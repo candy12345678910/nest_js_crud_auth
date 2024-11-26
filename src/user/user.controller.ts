@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put, Req, Res } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put, Req, Res, UseGuards } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { Request } from "express";
 import { UserDto } from "./dto/user-create.dto";
+import { AuthGuard } from "@nestjs/passport";
 
 @Controller('user')
 export class UserController{
@@ -14,6 +15,7 @@ export class UserController{
     }
 
     // Find all users
+    @UseGuards(AuthGuard('jwt'))
     @Get()
     findAll(){
         return this.userService.findAll();

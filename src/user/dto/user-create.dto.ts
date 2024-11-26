@@ -12,6 +12,6 @@ export class UserDto{
 
     @IsNumber()
     roll: number;
-
+    
     password: string
 }

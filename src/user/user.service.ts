@@ -81,5 +81,10 @@ export class UserService{
         }
     }
     
+    // Find user by email
+    async findByEmail(email:string){
+        const user= await this.userRepo.findOne({ where: { email } });
+        return user;
+    }
 
 }
